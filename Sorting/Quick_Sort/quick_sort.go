@@ -1,5 +1,16 @@
 package quicksort
+package main
 
+import (
+  "bufio"
+  "fmt"
+  "os"
+  "strconv"
+  "strings"
+)
+
+var reader *bufio.Reader = bufio.NewReader(os.Stdin)
+var writer *bufio.Writer = bufio.NewWriter(os.Stdout)
 // QuickSort uses the Quick sort algorithm to sort an integer slice.
 // The following code implements the Hoare partition scheme and was
 // ported from the pseudocode, that can be found on
@@ -33,4 +44,16 @@ func partition(slice []int, lo int, hi int) int {
 		}
 		slice[i], slice[j] = slice[j], slice[i]
 	}
+}
+
+func main() {
+  defer writer.Flush()
+
+  var n int
+  fmt.Fscanf(reader, "%d\n", &n)
+  arr := readArray(reader, n)
+
+  fmt.Println("Before:", arr)
+  QuickSort(arr)
+  fmt.Println("After:", arr)
 }
